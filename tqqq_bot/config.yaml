@@ -1,5 +1,5 @@
 name: V7_tqqq_bot
-version: 0.1.67
+version: 0.1.68
 slug: tqqq_bot
 description: TQQQ automated trading bot for a single IBKR account
 arch:
@@ -15,6 +15,7 @@ options:
     ibkr_password: placeholder_password
     dry_run: true
     readonly_api: true
+    license_key: ''
   google_sheet:
     google_sheet_id: your_google_sheet_id_here
     google_credentials_json: ''
@@ -72,6 +73,7 @@ schema:
     ibkr_password: password
     dry_run: bool
     readonly_api: bool
+    license_key: password
   google_sheet:
     google_sheet_id: str
     google_credentials_json: password
