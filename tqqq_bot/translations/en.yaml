@@ -40,6 +40,13 @@ configuration:
         description: >-
           The Gateway itself refuses every order, as a second lock behind Watch
           only. Turn it off to trade.
+      license_key:
+        name: License key
+        description: >-
+          The key you were given, starting with SL1. It sets the date this
+          add-on is paid through. After that date the bot keeps trading for 15
+          days with a daily reminder, then stops placing new orders and keeps
+          your positions. Paste a new key and restart the add-on to resume.
   google_sheet:
     name: Google Sheet
     description: The Tracker Sheet this account reads its grid from and writes to.
