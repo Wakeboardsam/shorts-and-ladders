@@ -72,9 +72,17 @@ The bot needs its own username and password. Why: IBKR only lets one session per
 
 - [ ] Helper shares the ladder Sheet template with you.
 - [ ] Open it and click **File → Make a copy**. Save the copy in your own Google Drive. Use **your copy** from now on.
-- [ ] Check it has these tabs: **TQQQ_Tracker**, **Fills**, **Health**, **Errors**. Do not rename them.
-- [ ] With your Helper, fill in the yellow input cells on **TQQQ_Tracker**: **I2** = the cash you are giving the ladder, **F3** = reduction factor (Helper picks), **H3** = `1.64`.
-- [ ] Type the **starting anchor price** into **G7** by hand. Your Helper picks it. This is the price the whole ladder is built from. After that the bot updates G7 by itself (for example, after a run-up it writes the price the anchor was bought back at).
+- [ ] Check it has these tabs: **Config**, **TQQQ_Tracker**, **Cash Flows**, **Fills**, **Health**, **Errors**, **Weekly Performance**, **CashInjectionCalc**, **TradingStrategy**, **Interest**, **Dividends** and **Holidays**. Do not rename, delete or reorder them, and never insert or delete rows or columns on **TQQQ_Tracker**: the bot reads it by fixed cell positions.
+- [ ] **Yellow cells are the ones you may change.** Every tab is protected with a warning, so when you edit a cell Google asks "are you sure?". That is normal: click **OK** for yellow cells, **Cancel** for anything else.
+- [ ] With your Helper, fill in the yellow cells on the **Config** tab:
+  - **Account name**: a short name for this account. It shows at the top of TQQQ_Tracker.
+  - **Start Date**: the day the ladder starts trading.
+  - **Starting Capital**: the cash you are giving the ladder.
+  - **Reduction Factor**: pick from the list (your Helper picks; the TradingStrategy tab compares the choices).
+  - **Sell Target Profit %**: the profit per rung, about `1.63%`.
+  - Leave **Price rounding** at `0` and **Fixed $0.50 steps** at `N` unless your Helper says otherwise.
+- [ ] Type the **starting anchor price** into **G7** on TQQQ_Tracker by hand (it is yellow). Your Helper picks it. This is the price the whole ladder is built from. After that the bot updates G7 by itself (for example, after a run-up it writes the price the anchor was bought back at).
+- [ ] Check row 2 of the **Cash Flows** tab shows your Start Date and Starting Capital. It fills itself in from Config.
 - [ ] Copy the **Sheet ID**. It is the long code in the Sheet's web address between `/d/` and `/edit`. Save it.
 
 ### Step 5. Give the bot a "robot" Google account (You, with Helper)
@@ -178,9 +186,9 @@ Then:
 First, reset the Sheet so the practice trades are gone. If you skip this, the bot compares the practice rows with your real account, finds the shares do not match, and stops itself.
 
 - [ ] **Stop** the add-on.
-- [ ] On **TQQQ_Tracker**, rows 7–100: clear column **C** (an empty cell means `IDLE`) and remove every `Y` in column **D**.
-- [ ] Set **I2** to the real cash for the ladder, and type a fresh starting anchor price into **G7** (your Helper picks it).
-- [ ] Optional: delete the practice rows (not the header row) on the **Fills**, **Health** and **Errors** tabs, so profit totals only count real trades.
+- [ ] On **TQQQ_Tracker**, rows 7–100: clear column **C** (an empty cell means `IDLE`). Column **D** is a formula and clears itself; do not type in it.
+- [ ] On **Config**, set **Start Date** and **Starting Capital** to the real values. On TQQQ_Tracker, type a fresh starting anchor price into **G7** (your Helper picks it), and clear any practice amounts in the injection ledger (column **I** from row 145 down).
+- [ ] Optional: on **Fills**, **Health** and **Errors**, delete the practice rows from **row 3** down. Keep rows 1 and 2: row 1 is the headers and row 2 holds formulas that TQQQ_Tracker reads. Also clear any practice rows on **Weekly Performance** (keep row 1) and on **Cash Flows** (keep rows 1 and 2), so profit and performance only count real trades.
 
 Then, live but watching only:
 
@@ -205,8 +213,8 @@ Then, when your Helper says it all looks right, turn trading on:
 ### Rules so the bot stays safe
 
 - **Do not buy or sell TQQQ by hand** in this account, and do not place your own TQQQ orders. The bot will see orders it does not recognize and **stop on purpose** to protect you.
-- **Do not edit** the Sheet's status columns (C and D) or the price columns. Only change the yellow input cells, and only with your Helper.
-- **Adding more money:** do it on a weekend, with your Helper, so the Sheet can be updated to match.
+- **Do not edit** the Sheet's status columns (C and D) or the price columns. Only change the yellow cells (the Config tab, G7, and the yellow rows of the injection ledger), and only with your Helper.
+- **Adding or taking out money:** do it on a weekend, with your Helper. Record every deposit or withdrawal on the **Cash Flows** tab (date, amount as a positive number, and Type), so performance numbers stay right. Profits you put back into the ladder are not a cash flow; your Helper adds those in the injection ledger, only on yellow rows (lots not yet bought), so the shares the bot already holds do not change.
 - Leave the little computer **plugged in and on the network**.
 - Never share your passwords, the `.json` key, or screenshots of the Configuration page.
 
