@@ -1,6 +1,6 @@
 # TQQQ ladder bot: step-by-step setup guide
 
-Written for add-on version 0.1.68.
+Written for add-on version 0.1.69.
 
 This guide is for someone setting up the TQQQ ladder bot for the first time, with a helper sitting next to them (in person or on a call). Do the steps in order. Each step says **who** does it: **You** (the account owner) or **Helper**. Tick the box when a step is done.
 
@@ -158,6 +158,12 @@ Open the add-on and go to the **Configuration** tab. Start in **practice mode**:
 
 - [ ] Time zone: yours. Leave the other times as they are unless your Helper changes them.
 
+**Performance reports**
+
+- [ ] Weekly Performance row: **on**. Every Sunday evening the bot adds one row to the **Weekly Performance** tab with your returns next to TQQQ, QQQ and the other benchmarks in its headers.
+- [ ] Flag unexplained cash changes: **on**. When money arrives or leaves that the bot's own trades do not explain (a deposit, a withdrawal, a dividend, interest), the bot adds a **Needs review** row to the **Cash Flows** tab for you to label.
+- [ ] Helper: if this Sheet was copied from an older one that still has a Weekly Performance script (**Extensions → Apps Script**), remove that script's Sunday trigger, so the bot is the only thing writing that tab.
+
 **Strategy and safeguards, Advanced**
 
 - [ ] Leave as they are.
@@ -188,7 +194,7 @@ First, reset the Sheet so the practice trades are gone. If you skip this, the bo
 - [ ] **Stop** the add-on.
 - [ ] On **TQQQ_Tracker**, rows 7–100: clear column **C** (an empty cell means `IDLE`). Column **D** is a formula and clears itself; do not type in it.
 - [ ] On **Config**, set **Start Date** and **Starting Capital** to the real values. On TQQQ_Tracker, type a fresh starting anchor price into **G7** (your Helper picks it), and clear any practice amounts in the injection ledger (column **I** from row 145 down).
-- [ ] Optional: on **Fills**, **Health** and **Errors**, delete the practice rows from **row 3** down. Keep rows 1 and 2: row 1 is the headers and row 2 holds formulas that TQQQ_Tracker reads. Also clear any practice rows on **Weekly Performance** (keep row 1) and on **Cash Flows** (keep rows 1 and 2), so profit and performance only count real trades.
+- [ ] Optional: on **Fills**, **Health** and **Errors**, delete the practice rows from **row 3** down. Keep rows 1 and 2: row 1 is the headers and row 2 holds formulas that TQQQ_Tracker reads. Also clear any practice rows on **Weekly Performance** (keep row 1) and on **Cash Flows** (keep rows 1 and 2), so profit and performance only count real trades. Delete whole rows there rather than leaving blank-looking cells with leftover values: the bot adds each new row right below the last row that has anything in it.
 
 Then, live but watching only:
 
@@ -209,12 +215,14 @@ Then, when your Helper says it all looks right, turn trading on:
 - **Every Sunday at 9:00 your time** (the default), the bot logs back in for the week. **Approve the IBKR Mobile push** on your phone. If you miss it, it tries again about an hour later.
 - The bot turns itself off from **Friday 6:15 pm to Sunday 9:00 am** (default times). That is normal.
 - A short pause every night just before midnight is also normal.
+- **Sunday evening, about 7:45 pm New York time** (5:45 pm Mountain), the bot adds this week's row to the **Weekly Performance** tab, if you turned that on. You do nothing. If a row is missing, tell your Helper; the Errors tab says why.
+- **Check the Cash Flows tab** now and then for rows marked **Needs review**. Each one is money that came in or went out that the bot's trades do not explain. With your Helper, set its **Type**: **Deposit** or **Withdrawal** for money you moved, or, for a dividend or interest payment, delete the row and add the amount on the **Dividends** or **Interest** tab instead. Until then the row is left out of the performance numbers, and the weekly row leaves its TWR and XIRR blank.
 
 ### Rules so the bot stays safe
 
 - **Do not buy or sell TQQQ by hand** in this account, and do not place your own TQQQ orders. The bot will see orders it does not recognize and **stop on purpose** to protect you.
 - **Do not edit** the Sheet's status columns (C and D) or the price columns. Only change the yellow cells (the Config tab, G7, and the yellow rows of the injection ledger), and only with your Helper.
-- **Adding or taking out money:** do it on a weekend, with your Helper. Record every deposit or withdrawal on the **Cash Flows** tab (date, amount as a positive number, and Type), so performance numbers stay right. Profits you put back into the ladder are not a cash flow; your Helper adds those in the injection ledger, only on yellow rows (lots not yet bought), so the shares the bot already holds do not change.
+- **Adding or taking out money:** do it on a weekend, with your Helper. Record every deposit or withdrawal on the **Cash Flows** tab (date, amount as a positive number, and Type), so performance numbers stay right. If the bot already added a **Needs review** row for it, change that row's Type instead of adding a second row. Profits you put back into the ladder are not a cash flow; your Helper adds those in the injection ledger, only on yellow rows (lots not yet bought), so the shares the bot already holds do not change.
 - Leave the little computer **plugged in and on the network**.
 - Never share your passwords, the `.json` key, or screenshots of the Configuration page.
 

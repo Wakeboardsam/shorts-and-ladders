@@ -18,6 +18,7 @@ The Configuration tab groups the options into sections, each with a plain-Englis
 - **Google Sheet**: Sheet ID and the service-account key. Paste the JSON key as a **single line**; multi-line JSON may not round-trip through the Home Assistant password field.
 - **Strategy and safeguards**: Bridge Anchor, price offset, trim limit, share-mismatch behavior, spread limit.
 - **Time zone and schedule**: a US time zone, the nightly pause and the Gateway restarts. Times are 24-hour `HH:MM`.
+- **Performance reports**: the Sunday Weekly Performance row (about 19:45 New York) and "Needs review" Cash Flows rows for cash changes the bot's trades do not explain. Both off by default; neither can place, change or cancel an order.
 - **Phone notifications**: one switch per alert, all off by default.
 - **Advanced and troubleshooting**: API port, client ID, intervals, timeouts, log masking and VNC.
 
