@@ -215,6 +215,7 @@ Then, when your Helper says it all looks right, turn trading on:
 - **Every Sunday at 9:00 your time** (the default), the bot logs back in for the week. **Approve the IBKR Mobile push** on your phone. If you miss it, it tries again about an hour later.
 - The bot turns itself off from **Friday 6:15 pm to Sunday 9:00 am** (default times). That is normal.
 - A short pause every night just before midnight is also normal.
+- **When the bot stops or restarts**, its orders stay at IBKR and may fill while it is off. When it starts again it writes those fills to the Sheet, cancels its orders and places fresh ones. You do nothing. IBKR only tells it about today's fills (New York time), so if it was off past midnight and an order filled, it sends a mismatch alert instead: message your Helper.
 - **Sunday evening, about 7:45 pm New York time** (5:45 pm Mountain), the bot adds this week's row to the **Weekly Performance** tab, if you turned that on. You do nothing. If a row is missing, tell your Helper; the Errors tab says why.
 - **Check the Cash Flows tab** now and then for rows marked **Needs review**. Each one is money that came in or went out that the bot's trades do not explain. With your Helper, set its **Type**: **Deposit** or **Withdrawal** for money you moved, or, for a dividend or interest payment, delete the row and add the amount on the **Dividends** or **Interest** tab instead. Until then the row is left out of the performance numbers, and the weekly row leaves its TWR and XIRR blank.
 
