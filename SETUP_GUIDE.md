@@ -13,6 +13,8 @@ This guide is for someone setting up the TQQQ ladder bot for the first time, wit
 
 **Important to know before you start:** TQQQ is a 3x leveraged fund. It can drop a lot, and quickly. In bad years the account can be worth much less than you put in, even while the bot is booking small profits. Only use money you can leave alone through a big drop.
 
+**Who decides what:** your Helper sets up and supports the software: installing it, updating it and fixing it. **Every investing decision is yours:** whether to use the bot, how much money to put in, every setting on the Config tab, the starting price, when to add or take out money, and when to stop. Your Helper can explain what a setting does, but does not recommend values. Any values shown in the Sheet template or in this guide are examples only and are not a recommendation. Backtest results describe the past and do not predict future results.
+
 ## What you need
 
 - About $150–$300 for a used mini PC (Step 6), plus a network cable.
@@ -41,7 +43,7 @@ The steps below are for one account. For a second account, repeat Steps 1–5 an
 ### Step 1. Open and fund the IBKR account (You)
 
 - [ ] Go to interactivebrokers.com and open an **Individual** account. Approval can take a few days.
-- [ ] **Account type:** ask your Helper whether to pick margin or cash. With a cash account, money from a sale takes a day to settle, which can block the bot's fast buy-then-sell cycles. A margin account avoids that, and the bot never borrows on its own because the Sheet sizes every order from your cash. An IRA or 401k cannot borrow at all; ask your Helper which IRA option IBKR offers that avoids the settlement wait.
+- [ ] **Account type:** you choose margin or cash. The trade-off: with a cash account, money from a sale takes a day to settle, which shouldn't be a problem as there is so much cash compared to the amounts bought and sold in a day. A margin account avoids that, and the bot never borrows on its own because the Sheet sizes every order from the amount of cash you choose to use. An IRA or 401k cannot borrow at all, but Taxable Non-Retirement accounts could.
 - [ ] **Trading permissions:** turn on **US stocks/ETFs**. If IBKR asks you to accept a risk notice for leveraged or complex ETFs, accept it, because TQQQ is one.
 - [ ] Install the **IBKR Mobile** app on your phone and turn on two-factor login with it (IBKR calls it IBKR Mobile Authentication or IB Key).
 - [ ] **Move the money in** (bank transfer). Wait until it shows as available cash.
@@ -54,7 +56,7 @@ When you own shares you bought at different prices and sell some, IBKR has to pi
 
 - [ ] In IBKR's website: **Settings → Account Settings → Tax Optimizer** (or "Lot Matching Method"), set the default to **LIFO**.
 
-This changes how your taxes are calculated. It is what your Helper uses, but check with your own tax preparer if you are unsure.
+The bot's records assume LIFO. It also changes how your taxes are calculated, so check with your own tax preparer if you are unsure.
 
 ### Step 3. Make a separate login just for the bot (You)
 
@@ -74,14 +76,14 @@ The bot needs its own username and password. Why: IBKR only lets one session per
 - [ ] Open it and click **File → Make a copy**. Save the copy in your own Google Drive. Use **your copy** from now on.
 - [ ] Check it has these tabs: **Config**, **TQQQ_Tracker**, **Cash Flows**, **Fills**, **Health**, **Errors**, **Weekly Performance**, **CashInjectionCalc**, **TradingStrategy**, **Interest**, **Dividends** and **Holidays**. Do not rename, delete or reorder them, and never insert or delete rows or columns on **TQQQ_Tracker**: the bot reads it by fixed cell positions.
 - [ ] **Yellow cells are the ones you may change.** Every tab is protected with a warning, so when you edit a cell Google asks "are you sure?". That is normal: click **OK** for yellow cells, **Cancel** for anything else.
-- [ ] With your Helper, fill in the yellow cells on the **Config** tab:
+- [ ] Fill in the yellow cells on the **Config** tab. Your Helper can show you where each one is and explain what it does (column C describes each setting); the values are your choice. The template's values are examples only and are not a recommendation.
   - **Account name**: a short name for this account. It shows at the top of TQQQ_Tracker.
   - **Start Date**: the day the ladder starts trading.
   - **Starting Capital**: the cash you are giving the ladder.
-  - **Reduction Factor**: pick from the list (your Helper picks; the TradingStrategy tab compares the choices).
-  - **Sell Target Profit %**: the profit per rung, about `1.63%`.
-  - Leave **Price rounding** at `0` and **Fixed $0.50 steps** at `N` unless your Helper says otherwise.
-- [ ] Type the **starting anchor price** into **G7** on TQQQ_Tracker by hand (it is yellow). Your Helper picks it. This is the price the whole ladder is built from. After that the bot updates G7 by itself (for example, after a run-up it writes the price the anchor was bought back at).
+  - **Reduction Factor**: pick from the list. It sets how your cash is spread across the ladder's levels; the TradingStrategy tab shows how each choice spreads it.
+  - **Sell Target Profit %**: the profit each lot must reach before it is sold.
+  - **Price rounding** and **Fixed $0.50 steps**: the template shows `0` and `N`. Column C explains what changing them does.
+- [ ] Type the **starting anchor price** into **G7** on TQQQ_Tracker by hand (it is yellow). This is the price the whole ladder is built from. You choose it. After that the bot updates G7 by itself (for example, after a run-up it writes the price the anchor (level 0) was bought back at).
 - [ ] Check row 2 of the **Cash Flows** tab shows your Start Date and Starting Capital. It fills itself in from Config.
 - [ ] Copy the **Sheet ID**. It is the long code in the Sheet's web address between `/d/` and `/edit`. Save it.
 
@@ -193,7 +195,7 @@ First, reset the Sheet so the practice trades are gone. If you skip this, the bo
 
 - [ ] **Stop** the add-on.
 - [ ] On **TQQQ_Tracker**, rows 7–100: clear column **C** (an empty cell means `IDLE`). Column **D** is a formula and clears itself; do not type in it.
-- [ ] On **Config**, set **Start Date** and **Starting Capital** to the real values. On TQQQ_Tracker, type a fresh starting anchor price into **G7** (your Helper picks it), and clear any practice amounts in the injection ledger (column **I** from row 145 down).
+- [ ] On **Config**, set **Start Date** and **Starting Capital** to the real values. On TQQQ_Tracker, type a fresh starting anchor price of your choosing into **G7**, and clear any practice amounts in the injection ledger (column **I** from row 145 down).
 - [ ] Optional: on **Fills**, **Health** and **Errors**, delete the practice rows from **row 3** down. Keep rows 1 and 2: row 1 is the headers and row 2 holds formulas that TQQQ_Tracker reads. Also clear any practice rows on **Weekly Performance** (keep row 1) and on **Cash Flows** (keep rows 1 and 2), so profit and performance only count real trades. Delete whole rows there rather than leaving blank-looking cells with leftover values: the bot adds each new row right below the last row that has anything in it.
 
 Then, live but watching only:
@@ -203,7 +205,7 @@ Then, live but watching only:
 - [ ] Your phone gets an **IBKR Mobile push**. Approve it within about 3 minutes.
 - [ ] Helper checks the log: the bot sees the right account, the cash, and the Sheet.
 
-Then, when your Helper says it all looks right, turn trading on:
+Then, once the Helper's technical checks pass and you decide to start trading, turn trading on:
 
 - [ ] **Stop** the add-on. Turn **Watch only off** and **Gateway read-only off**. Save, **Start**, approve the push.
 - [ ] The bot places its first order (the anchor buy at row 7). From now on it runs by itself.
@@ -222,8 +224,8 @@ Then, when your Helper says it all looks right, turn trading on:
 ### Rules so the bot stays safe
 
 - **Do not buy or sell TQQQ by hand** in this account, and do not place your own TQQQ orders. The bot will see orders it does not recognize and **stop on purpose** to protect you.
-- **Do not edit** the Sheet's status columns (C and D) or the price columns. Only change the yellow cells (the Config tab, G7, and the yellow rows of the injection ledger), and only with your Helper.
-- **Adding or taking out money:** do it on a weekend, with your Helper. Record every deposit or withdrawal on the **Cash Flows** tab (date, amount as a positive number, and Type), so performance numbers stay right. If the bot already added a **Needs review** row for it, change that row's Type instead of adding a second row. Profits you put back into the ladder are not a cash flow; your Helper adds those in the injection ledger, only on yellow rows (lots not yet bought), so the shares the bot already holds do not change.
+- **Do not edit** the Sheet's status columns (C and D) or the price columns. Only change the yellow cells (the Config tab, G7, and the yellow rows of the injection ledger). Your Helper can show you how; the amounts and settings are your decision.
+- **Adding or taking out money:** do it on a weekend, with your Helper. Record every deposit or withdrawal on the **Cash Flows** tab (date, amount as a positive number, and Type), so performance numbers stay right. If the bot already added a **Needs review** row for it, change that row's Type instead of adding a second row. Profits you choose to put back into the ladder are not a cash flow; you add those in the injection ledger (your Helper can show you how), only on yellow rows (lots not yet bought), so the shares the bot already holds do not change.
 - Leave the little computer **plugged in and on the network**.
 - Never share your passwords, the `.json` key, or screenshots of the Configuration page.
 
