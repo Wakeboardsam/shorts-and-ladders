@@ -44,8 +44,8 @@ configuration:
         name: License key
         description: >-
           The key you were given, starting with SL1. It sets the date this
-          add-on is paid through. After that date the bot keeps trading for 15
-          days with a daily reminder, then stops placing new orders and keeps
+          add-on is paid through. A daily reminder runs on the key's last 15
+          days, that date included. After that date the bot stops placing new orders and keeps
           your positions. Paste a new key and restart the add-on to resume.
   google_sheet:
     name: Google Sheet
@@ -258,7 +258,7 @@ configuration:
         name: Gateway API port
         description: >-
           The port the bot and this add-on's own Gateway talk on. Both always use
-          this same value, so any free port works and the two add-ons may differ.
+          this same value, so any free port works and each add-on may use its own.
           It does not depend on paper or live. Keep your current value.
       ibkr_client_id:
         name: API client ID

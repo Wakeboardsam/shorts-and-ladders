@@ -1,6 +1,6 @@
 # TQQQ ladder bot: step-by-step setup guide
 
-Written for add-on version 0.1.72.
+Written for add-on version 0.1.73.
 
 This guide is for someone setting up the TQQQ ladder bot for the first time, with a helper sitting next to them (in person or on a call). Do the steps in order. Each step says **who** does it: **You** (the account owner) or **Helper**. Tick the box when a step is done.
 
@@ -35,10 +35,10 @@ Each IBKR account gets its **own bot, its own Google Sheet and its own bot login
 - **One account is simplest.** It can be a regular account or a tax-sheltered one.
 - **Tax-sheltered options:** an **IRA** (Roth or traditional) at IBKR, or, if you are self-employed, a **Solo 401k**. A Solo 401k is usually set up by a Solo 401k provider first, and then IBKR opens an account owned by the plan. Old 401k or IRA money can move in with a **direct rollover** (it goes straight from the old company to IBKR, never through your hands).
 - **Paper account:** one is enough for practice. IBKR gives one to each live account.
-- **Two accounts on one box** work out of the box (the Account 1 and Account 2 add-ons). Each extra account means one more IBKR Mobile approval every Sunday.
+- **Up to four accounts on one box** work out of the box (the Account 1 to Account 4 add-ons). Each extra account means one more IBKR Mobile approval every Sunday.
 - Which account types fit you is a tax question. Ask a tax preparer or adviser before you move retirement money.
 
-The steps below are for one account. For a second account, repeat Steps 1–5 and 10–13 with the Account 2 add-on.
+The steps below are for one account. For each further account, repeat Steps 1–5 and 10–13 with the next add-on (Account 2, then Account 3, then Account 4).
 
 ### Step 1. Open and fund the IBKR account (You)
 
@@ -136,7 +136,7 @@ Tailscale lets your Helper reach the computer from anywhere to fix problems, wit
 
 - [ ] **Settings → Add-ons → Add-on Store**, then the **⋮** menu (top right) → **Repositories**.
 - [ ] Paste `https://github.com/Wakeboardsam/shorts-and-ladders` and click **Add**.
-- [ ] Refresh the page. Install **V7_tqqq_bot**. (The "Account 2" add-on is only for a second IBKR account; skip it.)
+- [ ] Refresh the page. Install **V7_tqqq_bot**. (The "Account 2", "Account 3" and "Account 4" add-ons are only for extra IBKR accounts; skip them.)
 - [ ] **Do not start it yet.**
 
 ### Step 10. Put the passwords and settings in (You type, Helper guides)
