@@ -1,6 +1,6 @@
 # TQQQ ladder bot: step-by-step setup guide
 
-Written for add-on version 0.1.72.
+Written for add-on version 0.1.73.
 
 This guide is for someone setting up the TQQQ ladder bot for the first time, with a helper sitting next to them (in person or on a call). Do the steps in order. Each step says **who** does it: **You** (the account owner) or **Helper**. Tick the box when a step is done.
 
