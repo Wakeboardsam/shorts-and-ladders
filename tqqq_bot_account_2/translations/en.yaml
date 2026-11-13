@@ -258,7 +258,7 @@ configuration:
         name: Gateway API port
         description: >-
           The port the bot and this add-on's own Gateway talk on. Both always use
-          this same value, so any free port works and the two add-ons may differ.
+          this same value, so any free port works and each add-on may use its own.
           It does not depend on paper or live. Keep your current value.
       ibkr_client_id:
         name: API client ID
