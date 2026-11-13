@@ -1,6 +1,6 @@
 # TQQQ ladder bot: step-by-step setup guide
 
-Written for add-on version 0.1.69.
+Written for add-on version 0.1.72.
 
 This guide is for someone setting up the TQQQ ladder bot for the first time, with a helper sitting next to them (in person or on a call). Do the steps in order. Each step says **who** does it: **You** (the account owner) or **Helper**. Tick the box when a step is done.
 
@@ -74,7 +74,8 @@ The bot needs its own username and password. Why: IBKR only lets one session per
 
 - [ ] Helper shares the ladder Sheet template with you.
 - [ ] Open it and click **File → Make a copy**. Save the copy in your own Google Drive. Use **your copy** from now on.
-- [ ] Check it has these tabs: **Config**, **TQQQ_Tracker**, **Cash Flows**, **Fills**, **Health**, **Errors**, **Weekly Performance**, **CashInjectionCalc**, **TradingStrategy**, **Interest**, **Dividends** and **Holidays**. Do not rename, delete or reorder them, and never insert or delete rows or columns on **TQQQ_Tracker**: the bot reads it by fixed cell positions.
+- [ ] Check it has these tabs: **Dashboard**, **Config**, **TQQQ_Tracker**, **Cash Flows**, **Fills**, **Health**, **Errors**, **Weekly Performance**, **CashInjectionCalc**, **TradingStrategy**, **Interest**, **Dividends** and **Holidays**. Do not rename, delete or reorder them, and never insert or delete rows or columns on **TQQQ_Tracker**: the bot reads it by fixed cell positions.
+- [ ] The **Dashboard** tab is the one to look at day to day: bot status, account value, cash generated and how the ladder stands. It only reads the other tabs, so you never type on it. Its **Performance since start** section comes from the latest Sunday row on **Weekly Performance**, so it shows `-` until you turn that report on (Step 10) and the first Sunday row arrives.
 - [ ] **Yellow cells are the ones you may change.** Every tab is protected with a warning, so when you edit a cell Google asks "are you sure?". That is normal: click **OK** for yellow cells, **Cancel** for anything else.
 - [ ] Fill in the yellow cells on the **Config** tab. Your Helper can show you where each one is and explain what it does (column C describes each setting); the values are your choice. The template's values are examples only and are not a recommendation.
   - **Account name**: a short name for this account. It shows at the top of TQQQ_Tracker.
@@ -218,7 +219,7 @@ Then, once the Helper's technical checks pass and you decide to start trading, t
 - The bot turns itself off from **Friday 6:15 pm to Sunday 9:00 am** (default times). That is normal.
 - A short pause every night just before midnight is also normal.
 - **When the bot stops or restarts**, its orders stay at IBKR and may fill while it is off. When it starts again it writes those fills to the Sheet, cancels its orders and places fresh ones. You do nothing. IBKR only tells it about today's fills (New York time), so if it was off past midnight and an order filled, it sends a mismatch alert instead: message your Helper.
-- **Sunday evening, about 7:45 pm New York time** (5:45 pm Mountain), the bot adds this week's row to the **Weekly Performance** tab, if you turned that on. You do nothing. If a row is missing, tell your Helper; the Errors tab says why.
+- **Sunday evening, about 7:45 pm New York time** (5:45 pm Mountain), the bot adds this week's row to the **Weekly Performance** tab, if you turned that on. The **Dashboard** picks up the new row by itself. You do nothing. If a row is missing, tell your Helper; the Errors tab says why.
 - **Check the Cash Flows tab** now and then for rows marked **Needs review**. Each one is money that came in or went out that the bot's trades do not explain. With your Helper, set its **Type**: **Deposit** or **Withdrawal** for money you moved, or, for a dividend or interest payment, delete the row and add the amount on the **Dividends** or **Interest** tab instead. Until then the row is left out of the performance numbers, and the weekly row leaves its TWR and XIRR blank.
 
 ### Rules so the bot stays safe
