@@ -143,6 +143,25 @@ configuration:
         description: >-
           A Sunday time you can approve the login on your phone, before trading
           opens at 20:00 New York (18:00 Mountain). Normal is 09:00.
+  reports:
+    name: Performance reports
+    description: >-
+      Optional rows the bot adds to your Google Sheet. Both are off until you
+      turn them on, and neither can place, change or cancel an order.
+    fields:
+      weekly_performance_enabled:
+        name: Weekly Performance row
+        description: >-
+          Every Sunday at about 19:45 New York (17:45 Mountain) the bot adds one
+          row to the Weekly Performance tab, with your returns and benchmark
+          returns from Yahoo. It replaces the old Apps Script, so remove that
+          script's Sunday trigger when you turn this on.
+      cash_review_enabled:
+        name: Flag unexplained cash changes
+        description: >-
+          When the account's cash changes by more than the bot's own trades
+          explain (a deposit, withdrawal, dividend or interest), the bot adds a
+          "Needs review" row to the Cash Flows tab. Set its Type afterwards.
   notifications:
     name: Phone notifications
     description: >-
