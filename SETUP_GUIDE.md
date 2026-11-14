@@ -128,7 +128,7 @@ Your Helper does not get a login of their own on this computer, and nothing is s
 
 ## Part 4: The bot
 
-### Step 9. Install the bot add-on (Helper)
+### Step 9. Install the bot add-on (You, Helper guides)
 
 - [ ] **Settings → Add-ons → Add-on Store**, then the **⋮** menu (top right) → **Repositories**.
 - [ ] Paste `https://github.com/Wakeboardsam/shorts-and-ladders` and click **Add**.
@@ -177,12 +177,12 @@ Then:
 - [ ] Click **Start**, then open the **Log** tab.
 - [ ] Wait for the IBKR Gateway to log in and for the bot to say it started (a few minutes).
 - [ ] In your Sheet, check that **C1** (heartbeat) keeps updating and the **Health** tab gets new rows.
-- [ ] If the log says the Gateway is stuck on a pop-up, your Helper turns on the Gateway screen (VNC) once to click it, then turns VNC off again.
+- [ ] If the log says the Gateway is stuck on a pop-up, turn on the Gateway screen (VNC) once to click it, with your Helper guiding, then turn VNC off again.
 
 ### Step 12. Phone alerts (You, with Helper; optional but recommended)
 
 - [ ] Install the **Home Assistant** app on your phone and log in.
-- [ ] Helper creates a Home Assistant automation: trigger **Webhook**, action **send a notification to your phone**. Copy its webhook URL.
+- [ ] With your Helper guiding, create a Home Assistant automation: trigger **Webhook**, action **send a notification to your phone**. Copy its webhook URL.
 - [ ] In the add-on's **Phone notifications** section: turn on **enabled**, paste the webhook URL, and turn on at least: halts, bridge halt, share mismatch, Gateway login needed, watchdog restart, errors. Fills are optional.
 - [ ] Save and restart the add-on. Check that the "bot started" alert arrives (if you turned it on).
 
@@ -200,7 +200,7 @@ Then, live but watching only:
 - [ ] Change **all four together**: Trading mode **live**, account ID = your **live** number (U…), the bot's **live** username and password.
 - [ ] Keep **Watch only** and **Gateway read-only** on. Save, then **Start**.
 - [ ] Your phone gets an **IBKR Mobile push**. Approve it within about 3 minutes.
-- [ ] Helper checks the log: the bot sees the right account, the cash, and the Sheet.
+- [ ] Show your Helper the **Log** tab (screen share, or send the downloaded log): they check the bot sees the right account, the cash, and the Sheet.
 
 Then, once the Helper's technical checks pass and you decide to start trading, turn trading on:
 
@@ -229,7 +229,16 @@ Then, once the Helper's technical checks pass and you decide to start trading, t
 ### If something goes wrong
 
 - If you get an alert that says **halt**, **mismatch** or **login needed**, do not try to fix it in IBKR yourself. Message your Helper.
-- The bot stops itself whenever the Sheet and IBKR disagree. That is a safety feature, not a crash. Your Helper compares the two, fixes the Sheet, and restarts the bot.
+- The bot stops itself whenever the Sheet and IBKR disagree. That is a safety feature, not a crash. With your Helper on a screen share, you compare the two, fix the Sheet, and restart the bot.
+
+### Getting help
+
+Your Helper has no access to your computer, so help works one of two ways:
+
+- **Send the log.** Open the bot add-on's **Log** tab and click **Download** at the bottom (or copy the text), then send it to your Helper. This is enough for most problems.
+- **Screen share.** For anything hands-on, start a screen share and do the clicking yourself while your Helper talks you through it.
+
+Either way, **never show or send the add-on's Configuration tab**: it holds your IBKR login and Google key.
 
 ## Things to save (fill in, keep private)
 
