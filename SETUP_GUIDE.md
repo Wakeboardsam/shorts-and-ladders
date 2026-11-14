@@ -119,16 +119,12 @@ Home Assistant OS is the free operating system that runs the bot. It replaces Wi
 - [ ] Create the **owner account** with a strong password. Save it.
 - [ ] Set your **location and time zone** when asked.
 
-### Step 8. Set up remote access with Tailscale (Helper, with You)
+### Step 8. How your Helper helps from here (You, with Helper)
 
-Tailscale lets your Helper reach the computer from anywhere to fix problems, without opening anything to the internet.
+Your Helper does not get a login of their own on this computer, and nothing is set up for remote access. When you need help, it happens in person or on a screen-share that you start, with you signed in to your own Home Assistant.
 
-- [ ] Make a free account at **tailscale.com** (You).
-- [ ] In Home Assistant: **Settings → Add-ons → Add-on Store**, find **Tailscale**, **Install**, turn on **Start on boot**, then **Start**.
-- [ ] Open its **Web UI** and log in with your Tailscale account to add this computer.
-- [ ] In the Tailscale admin page, **share this machine** with your Helper (or invite them).
-- [ ] In Home Assistant, **Settings → People → Add person** for your Helper, with a login and admin rights.
-- [ ] Helper checks they can open Home Assistant from their own place.
+- [ ] Keep the Home Assistant **owner login** from Step 7 somewhere you can find it. You will sign in with it whenever your Helper is guiding you.
+- [ ] Make sure you can open Home Assistant at **http://homeassistant.local:8123** from a computer on your home network. That is the screen you share.
 
 ## Part 4: The bot
 
@@ -246,5 +242,4 @@ Then, once the Helper's technical checks pass and you decide to start trading, t
 | Google Sheet ID | Step 4 |
 | Service account email and `.json` key file | Step 5 |
 | Home Assistant owner login | Step 7 |
-| Tailscale account | Step 8 |
 | Home Assistant webhook URL | Step 12 |
