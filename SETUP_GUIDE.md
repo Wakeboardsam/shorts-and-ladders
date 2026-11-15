@@ -74,7 +74,7 @@ The bot needs its own username and password. Why: IBKR only lets one session per
 
 - [ ] Helper shares the ladder Sheet template with you.
 - [ ] Open it and click **File → Make a copy**. Save the copy in your own Google Drive. Use **your copy** from now on.
-- [ ] Check it has these tabs: **Dashboard**, **Config**, **TQQQ_Tracker**, **Cash Flows**, **Fills**, **Health**, **Errors**, **Weekly Performance**, **CashInjectionCalc**, **TradingStrategy**, **Interest**, **Dividends** and **Holidays**. Do not rename, delete or reorder them, and never insert or delete rows or columns on **TQQQ_Tracker**: the bot reads it by fixed cell positions.
+- [ ] Check it has these tabs: **Dashboard**, **Config**, **TQQQ_Tracker**, **Cash Flows**, **Fills**, **Health**, **Errors**, **Weekly Performance**, **CashInjectionCalc**, **TradingStrategy** and **Holidays**. Do not rename, delete or reorder them, and never insert or delete rows or columns on **TQQQ_Tracker**: the bot reads it by fixed cell positions.
 - [ ] The **Dashboard** tab is the one to look at day to day: bot status, account value, cash generated and how the ladder stands. It only reads the other tabs, so you never type on it. Its **Performance since start** section comes from the latest Sunday row on **Weekly Performance**, so it shows `-` until you turn that report on (Step 10) and the first Sunday row arrives.
 - [ ] **Yellow cells are the ones you may change.** Every tab is protected with a warning, so when you edit a cell Google asks "are you sure?". That is normal: click **OK** for yellow cells, **Cancel** for anything else.
 - [ ] Fill in the yellow cells on the **Config** tab. Your Helper can show you where each one is and explain what it does (column C describes each setting); the values are your choice. The template's values are examples only and are not a recommendation.
@@ -160,7 +160,7 @@ Open the add-on and go to the **Configuration** tab. Start in **practice mode**:
 **Performance reports**
 
 - [ ] Weekly Performance row: **on**. Every Sunday evening the bot adds one row to the **Weekly Performance** tab with your returns next to TQQQ, QQQ and the other benchmarks in its headers.
-- [ ] Flag unexplained cash changes: **on**. When money arrives or leaves that the bot's own trades do not explain (a deposit, a withdrawal, a dividend, interest), the bot adds a **Needs review** row to the **Cash Flows** tab for you to label.
+- [ ] Flag unexplained cash changes: **on**. When money arrives or leaves that the bot's own trades do not explain (a deposit, a withdrawal, a dividend, interest), the bot adds a **Needs review** row to the **Cash Flows** tab for you to label. The row is highlighted until you do.
 - [ ] Helper: if this Sheet was copied from an older one that still has a Weekly Performance script (**Extensions → Apps Script**), remove that script's Sunday trigger, so the bot is the only thing writing that tab.
 
 **Strategy and safeguards, Advanced**
@@ -216,7 +216,7 @@ Then, once the Helper's technical checks pass and you decide to start trading, t
 - A short pause every night just before midnight is also normal.
 - **When the bot stops or restarts**, its orders stay at IBKR and may fill while it is off. When it starts again it writes those fills to the Sheet, cancels its orders and places fresh ones. You do nothing. IBKR only tells it about today's fills (New York time), so if it was off past midnight and an order filled, it sends a mismatch alert instead: message your Helper.
 - **Sunday evening, about 7:45 pm New York time** (5:45 pm Mountain), the bot adds this week's row to the **Weekly Performance** tab, if you turned that on. The **Dashboard** picks up the new row by itself. You do nothing. If a row is missing, tell your Helper; the Errors tab says why.
-- **Check the Cash Flows tab** now and then for rows marked **Needs review**. Each one is money that came in or went out that the bot's trades do not explain. With your Helper, set its **Type**: **Deposit** or **Withdrawal** for money you moved, or, for a dividend or interest payment, delete the row and add the amount on the **Dividends** or **Interest** tab instead. Until then the row is left out of the performance numbers, and the weekly row leaves its TWR and XIRR blank.
+- **Check the Cash Flows tab** now and then for rows marked **Needs review**. Each one is money that came in or went out that the bot's trades do not explain. Pick its **Type** from the dropdown: **Deposit** or **Withdrawal** for money you moved, **Interest** or **Dividend** for a payment from IBKR, or **Other income** for anything else the account earned (such as option premium). Until then the row stays highlighted and is left out of the performance numbers, the Dashboard's **Profit ready to invest** says **Check Cash Flows**, and the weekly row leaves its TWR and XIRR blank. IBKR usually pays a month's interest early in the next month, so expect about one interest row a month.
 
 ### Rules so the bot stays safe
 

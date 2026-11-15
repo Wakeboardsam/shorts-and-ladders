@@ -161,7 +161,8 @@ configuration:
         description: >-
           When the account's cash changes by more than the bot's own trades
           explain (a deposit, withdrawal, dividend or interest), the bot adds a
-          "Needs review" row to the Cash Flows tab. Set its Type afterwards.
+          "Needs review" row to the Cash Flows tab. Set its Type afterwards
+          (Deposit, Withdrawal, Interest, Dividend or Other income).
   notifications:
     name: Phone notifications
     description: >-
