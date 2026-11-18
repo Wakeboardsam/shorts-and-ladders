@@ -183,7 +183,7 @@ Then:
 
 - [ ] Install the **Home Assistant** app on your phone and log in.
 - [ ] With your Helper guiding, create a Home Assistant automation: trigger **Webhook**, action **send a notification to your phone**. Copy its webhook URL.
-- [ ] In the add-on's **Phone notifications** section: turn on **enabled**, paste the webhook URL, and turn on at least: halts, bridge halt, share mismatch, Gateway login needed, watchdog restart, errors. Fills are optional.
+- [ ] In the add-on's **Phone notifications** section: turn on **enabled**, paste the webhook URL, and turn on at least: halts, bridge halt, share mismatch, Gateway login needed, watchdog restart, errors. **Buy refused by IBKR** is already on. Fills are optional.
 - [ ] Save and restart the add-on. Check that the "bot started" alert arrives (if you turned it on).
 
 ### Step 13. Go live (You, with Helper)

@@ -19,7 +19,7 @@ The Configuration tab groups the options into sections, each with a plain-Englis
 - **Strategy and safeguards**: Bridge Anchor, price offset, trim limit, share-mismatch behavior, spread limit.
 - **Time zone and schedule**: a US time zone, the nightly pause and the Gateway restarts. Times are 24-hour `HH:MM`.
 - **Performance reports**: the Sunday Weekly Performance row (about 19:45 New York) and "Needs review" Cash Flows rows for cash changes the bot's trades do not explain. Both off by default; neither can place, change or cancel an order.
-- **Phone notifications**: one switch per alert, all off by default.
+- **Phone notifications**: one switch per alert, all off by default except "Buy refused by IBKR". New buys pause for an hour, then retry, when IBKR refuses one (for example, a cash account waiting for sales to settle).
 - **Advanced and troubleshooting**: API port, client ID, intervals, timeouts, log masking and VNC.
 
 **Upgrading from 0.1.53 or earlier.** On its first start, the add-on moves your saved settings into the new sections and restarts once. If a value cannot be moved, everything else still is, and the add-on stops in Watch only before connecting to IBKR; the log names the value to check. If the log says not to save the Configuration page yet, start the add-on again instead.

@@ -238,6 +238,13 @@ configuration:
           missing position data or an automatic share repair. Each repair alerts.
           An engine error or missing position data alerts only if it has not
           recovered within the error alert delay below, then once until it clears.
+      notify_on_buy_rejected:
+        name: Buy refused by IBKR
+        description: >-
+          IBKR refused a new BUY, usually because the account lacks available
+          funds (a cash account cannot spend unsettled sale proceeds). New buys
+          pause and one is retried each pause; one alert per retry that is still
+          refused, and one when buys are accepted again. On by default.
       timeout_seconds:
         name: Send timeout (seconds)
         description: >-
@@ -273,6 +280,12 @@ configuration:
       health_log_interval_seconds:
         name: Health row interval (seconds)
         description: How often a row is written to the Health tab. Normal is 300.
+      buy_reject_pause_minutes:
+        name: Pause after a refused buy (minutes)
+        description: >-
+          After IBKR refuses a BUY, new buys wait this long before one is tried
+          again. A fill ends the wait early. Sells continue. 0 turns the pause off.
+          Normal is 60.
       maintenance_reconnect_grace_minutes:
         name: Reconnect grace after the pause (minutes)
         description: >-

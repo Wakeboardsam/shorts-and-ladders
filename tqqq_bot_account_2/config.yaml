@@ -1,5 +1,5 @@
 name: V7_tqqq_bot_account_2
-version: 0.1.74
+version: 0.1.75
 slug: tqqq_bot_account_2
 description: TQQQ automated trading bot for an independent IBKR account_2
 arch:
@@ -53,6 +53,7 @@ options:
     notify_on_gateway_login: false
     notify_on_watchdog_restart: false
     notify_on_errors: false
+    notify_on_buy_rejected: true
     timeout_seconds: 3.0
     dedupe_window_seconds: 300
     error_alert_delay_seconds: 600
@@ -62,6 +63,7 @@ options:
     poll_interval_seconds: 60
     heartbeat_interval_seconds: 60
     health_log_interval_seconds: 300
+    buy_reject_pause_minutes: 60
     maintenance_reconnect_grace_minutes: 30
     gateway_live_wait_timeout_seconds: 3600
     gateway_paper_wait_timeout_seconds: 300
@@ -114,6 +116,7 @@ schema:
     notify_on_gateway_login: bool
     notify_on_watchdog_restart: bool
     notify_on_errors: bool
+    notify_on_buy_rejected: bool
     timeout_seconds: float(0,)
     dedupe_window_seconds: int(0,)
     error_alert_delay_seconds: int(0,)
@@ -123,6 +126,7 @@ schema:
     poll_interval_seconds: int(1,)
     heartbeat_interval_seconds: int(1,)
     health_log_interval_seconds: int(1,)
+    buy_reject_pause_minutes: int(0,)
     maintenance_reconnect_grace_minutes: int(0,)
     gateway_live_wait_timeout_seconds: int(1,)
     gateway_paper_wait_timeout_seconds: int(1,)
